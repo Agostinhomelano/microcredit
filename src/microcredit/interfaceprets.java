@@ -495,6 +495,7 @@ public class interfaceprets extends javax.swing.JFrame {
                 int id_du_client = db.chercheridclient(nom,tel);
                 Pret nouveaupret =new Pret(id_du_client,temp,montant,objet);
                 db.creerpret(nouveaupret);
+                viderchamps();
             }
             else{
               JOptionPane.showMessageDialog(this,"nom ou numero invalide ");

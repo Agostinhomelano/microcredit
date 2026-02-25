@@ -18,6 +18,7 @@ public class Pret {
         this.tauxInteret = 30;
         this.remboursements = new ArrayList<>();
         this.id = idclient ;
+        this.duree= duree;
 
 
     }
