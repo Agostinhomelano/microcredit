@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -125,6 +126,33 @@ public class database {
             JOptionPane.showMessageDialog(null, "Erreur " +e);            
         }        
         return 0;
-    }
-    
+    }   
+    public int chargerinfosclient(String nom,String num) throws SQLException{
+    Connection co = connctionDB.getConnection();
+        String sql = "SELECT nom, telephone FROM clients";
+        try{
+            PreparedStatement pst ;
+            pst= co.prepareStatement(sql);
+            ResultSet rs =pst.executeQuery();            
+            
+            while(rs.next()){                 
+                String nomclient = rs.getString("nom");
+                String telephoneclient = rs.getString("telephone");
+                System.out.println(nomclient+telephoneclient);
+                if(telephoneclient==num & nomclient == nom ){
+                    System.out.println(1);
+                    return 1;
+                }
+                else{
+                        return 0;
+                      }
+                }
+                
+            
+            co.close();       
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"Erreur" +e);
+        }
+        return 0;
+     }
 }
