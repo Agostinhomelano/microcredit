@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Agostinho MELANO
  */
 public class database {
+    
     public void chargerclient( JTable matable) throws SQLException{
     Connection co = connctionDB.getConnection();
         String sql = "SELECT * FROM clients";
@@ -127,32 +128,70 @@ public class database {
         }        
         return 0;
     }   
-    public int chargerinfosclient(String nom,String num) throws SQLException{
+    public int chargerinfosclient(String nom, String num) throws SQLException {
+
     Connection co = connctionDB.getConnection();
-        String sql = "SELECT nom, telephone FROM clients";
-        try{
-            PreparedStatement pst ;
-            pst= co.prepareStatement(sql);
-            ResultSet rs =pst.executeQuery();            
-            
-            while(rs.next()){                 
-                String nomclient = rs.getString("nom");
-                String telephoneclient = rs.getString("telephone");
-                System.out.println(nomclient+telephoneclient);
-                if(telephoneclient==num & nomclient == nom ){
-                    System.out.println(1);
-                    return 1;
-                }
-                else{
-                        return 0;
-                      }
-                }
-                
-            
-            co.close();       
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Erreur" +e);
+    String sql = "SELECT * FROM clients WHERE nom = ? AND telephone = ?";
+
+    try {
+        PreparedStatement pst = co.prepareStatement(sql);
+        pst.setString(1, nom);
+        pst.setString(2, num);
+
+        ResultSet rs = pst.executeQuery();
+
+        if (rs.next()) {
+            return 1;
+        } else {
+            return 0;
         }
-        return 0;
-     }
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Erreur " + e);
+    }
+
+    return 0;
+}
+        public Integer chercheridclient(String nom, String telephone) throws SQLException {
+
+            Connection co = connctionDB.getConnection();
+            String sql = "SELECT id FROM clients WHERE nom = ? AND telephone = ?";
+
+            try {
+                PreparedStatement pst = co.prepareStatement(sql);
+                pst.setString(1, nom);
+                pst.setString(2, telephone);
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+                    return rs.getInt("id");
+                }
+
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Erreur " + e);
+            }
+
+            return null; 
+}
+         public void creerpret(Pret p ) throws SQLException {
+
+        String query ="insert into pret(montant,duree,taux_interet,id_clients,objectif)\n" +
+                "values(?,?,?,?,?)";                    
+        try (Connection co = connctionDB.getConnection();
+             PreparedStatement ps = co.prepareStatement(query)){
+
+            ps.setDouble(1, p.getMontant());
+            ps.setString(2, p.getDuree());
+            ps.setDouble(3, p.getTauxInteret());
+            ps.setDouble(4, p.getid());
+            ps.setString(5, p.getobjectif());
+            
+            ps.executeUpdate();
+            ps.close();
+            co.close();
+
+        }
+        
+    }
 }

@@ -4,18 +4,20 @@ import java.util.ArrayList;
 
 public class Pret {
     private double montant;
-    private int duree;
+    private String objectif;
+    private String duree;
     private double tauxInteret;
-    private Client client;
+    private int id;
     private ArrayList<Remboursement> remboursements;
     private double montantRestant ;
 
-    public Pret(Client client ,double montant) {
+    public Pret(int idclient,String duree ,double montant,String objectif) {
 
         this.montant = montant;
+        this.objectif = objectif;
         this.tauxInteret = 30;
         this.remboursements = new ArrayList<>();
-        this.client = client ;
+        this.id = idclient ;
 
 
     }
@@ -50,10 +52,6 @@ public class Pret {
         return montantRestant ;
 
     }
-
-
-
-
     public double getTauxInteret() {
         return tauxInteret;
     }
@@ -62,11 +60,11 @@ public class Pret {
         this.tauxInteret = tauxInteret;
     }
 
-    public int getDuree() {
+    public String getDuree() {
         return duree;
     }
 
-    public void setDuree(int duree) {
+    public void setDuree(String duree) {
         this.duree = duree;
     }
 
@@ -78,13 +76,19 @@ public class Pret {
         this.montant = montant;
     }
 
-    public Client getClient() {
-        return client;
+    public String getobjectif() {
+        return objectif;
     }
 
-    public void setClient(Client client) {
-        this.client = client;
+    public void setobjectif(String objectif) {
+        this.objectif = objectif;
+    }
+     public int getid() {
+        return id;
+    }
+
+    public void setid(int id) {
+        this.id = id;
     }
 }
-
 

@@ -1,20 +1,12 @@
 package microcredit;
-
-
-
 public class CompteEpargne extends Compte{
 
     private double tauxInteret ;
-
-
-
     public CompteEpargne(Client client, double tauxInteret) {
         super(client);
         this.tauxInteret = tauxInteret;
 
     }
-
-
     public void deposer(double montant) {
         solde += montant ;
     }
