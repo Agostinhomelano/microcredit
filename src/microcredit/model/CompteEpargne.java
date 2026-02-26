@@ -20,6 +20,12 @@ public class CompteEpargne extends Compte{
     }
 
     @Override
+    public void setNumeroCompte(String numeroCompte) {
+        super.setNumeroCompte(numeroCompte);
+    }
+
+
+    @Override
     public String toString() {
         return "votre solde epargne est de : "+getSolde();
     }

@@ -4,8 +4,8 @@
  */
 package microcredit.UIdesign;
 
+import microcredit.Database.ClientDB;
 import microcredit.model.Client;
-import microcredit.model.database;
 
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Agostinho MELANO
  */
 public class InterfaceClient extends javax.swing.JFrame {
-     database db = new database();
+     ClientDB db = new ClientDB();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfaceClient.class.getName());
 
     /**
@@ -88,7 +88,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setFocusTraversalPolicyProvider(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-merchant-account-50.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-merchant-account-50.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -103,7 +103,7 @@ public class InterfaceClient extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-account-50-2.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-account-50-2.png"))); // NOI18N
         jLabel7.setText("Admin");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -150,14 +150,14 @@ public class InterfaceClient extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-dashboard-48.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-dashboard-48.png"))); // NOI18N
         jLabel4.setText("Tableau de bord");
         jLabel4.setOpaque(true);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-homepage-50.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-homepage-50.png"))); // NOI18N
         jButton1.setText("Accueil");
         jButton1.setBorder(null);
         jButton1.setFocusPainted(false);
@@ -172,7 +172,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-shopping-mall-50.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-shopping-mall-50.png"))); // NOI18N
         jButton2.setText("Préts");
         jButton2.setBorder(null);
         jButton2.setFocusPainted(false);
@@ -187,7 +187,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-payment-50.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-payment-50.png"))); // NOI18N
         jButton3.setText("Paiements");
         jButton3.setBorder(null);
         jButton3.setFocusPainted(false);
@@ -202,7 +202,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 153, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-logout-50.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-logout-50.png"))); // NOI18N
         jButton4.setText("Se Deconnecter");
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
@@ -248,7 +248,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-users-50.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-users-50.png"))); // NOI18N
         jLabel5.setText("GESTION DES CLIENTS");
         jLabel5.setOpaque(true);
 
@@ -385,7 +385,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 153, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-add-24.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-add-24.png"))); // NOI18N
         jButton5.setText("Add");
         jButton5.setFocusPainted(false);
         jButton5.setFocusable(false);
@@ -399,7 +399,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(0, 0, 204));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-update-24.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-update-24.png"))); // NOI18N
         jButton8.setText("Update");
         jButton8.setFocusPainted(false);
         jButton8.setFocusable(false);
@@ -413,7 +413,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton6.setBackground(new java.awt.Color(204, 0, 0));
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-delete-24.png"))); // NOI18N
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-delete-24.png"))); // NOI18N
         jButton6.setText("Delete");
         jButton6.setFocusPainted(false);
         jButton6.setFocusable(false);
@@ -427,7 +427,7 @@ public class InterfaceClient extends javax.swing.JFrame {
         jButton9.setBackground(new java.awt.Color(255, 255, 255));
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton9.setForeground(new java.awt.Color(51, 51, 51));
-        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-cancel-24.png"))); // NOI18N
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-cancel-24.png"))); // NOI18N
         jButton9.setText("Cancel");
         jButton9.setFocusPainted(false);
         jButton9.setFocusable(false);

@@ -4,11 +4,16 @@
  */
 package microcredit.UIdesign;
 
+import microcredit.Database.ClientDB;
+import microcredit.Database.PretDB;
 import microcredit.model.Client;
 import microcredit.model.Pret;
-import microcredit.model.database;
+import microcredit.model.Remboursement;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import javax.swing.JOptionPane;
 
 /**
@@ -16,7 +21,8 @@ import javax.swing.JOptionPane;
  * @author Agostinho MELANO
  */
 public class interfaceprets extends javax.swing.JFrame {
-    database db = new database();
+    PretDB pretdb = new PretDB();
+    ClientDB clientDB = new ClientDB();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(interfaceprets.class.getName());
 
     /**
@@ -24,6 +30,31 @@ public class interfaceprets extends javax.swing.JFrame {
      */
     public interfaceprets() {
         initComponents();
+        chargerpage();
+        LocalDate aujourdhui = LocalDate.now();
+        DateTimeFormatter format=DateTimeFormatter.ofPattern("EEEE 'le' dd MMMM yyyy",Locale.FRENCH);
+        String date_jour =aujourdhui.format(format);        
+        date_du_jour.setText(date_jour);
+    }
+     public void chargerpage(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+        try {
+            pretdb.chargerpret(tablepret);
+        } catch (SQLException ex) {
+            System.getLogger(InterfaceClient.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+        }
     }
     public void viderchamps(){
         nomclient.setText("");
@@ -45,7 +76,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        date_du_jour = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
@@ -63,7 +94,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tablepret = new javax.swing.JTable();
         nomclient = new javax.swing.JTextField();
         numero = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
@@ -77,7 +108,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setFocusTraversalPolicyProvider(true);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-merchant-account-50.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-merchant-account-50.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
@@ -86,13 +117,12 @@ public class interfaceprets extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Votre partenaire financier");
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel6.setText("Vendredi 20 fev 2026");
+        date_du_jour.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        date_du_jour.setForeground(new java.awt.Color(51, 51, 51));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-account-50-2.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-account-50-2.png"))); // NOI18N
         jLabel7.setText("Admin");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -107,9 +137,9 @@ public class interfaceprets extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(137, 137, 137)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(date_du_jour, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 114, Short.MAX_VALUE)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25))
         );
@@ -126,7 +156,7 @@ public class interfaceprets extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(date_du_jour, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel3))
                             .addComponent(jLabel1))))
@@ -138,7 +168,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(51, 51, 51));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-account-50.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-account-50.png"))); // NOI18N
         jButton2.setText("Clients");
         jButton2.setBorder(null);
         jButton2.setFocusPainted(false);
@@ -153,7 +183,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(51, 51, 51));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-payment-50.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-payment-50.png"))); // NOI18N
         jButton3.setText("Paiements");
         jButton3.setBorder(null);
         jButton3.setFocusPainted(false);
@@ -168,7 +198,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 153, 0));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-logout-50.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-logout-50.png"))); // NOI18N
         jButton4.setText("Se Deconnecter");
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
@@ -177,14 +207,14 @@ public class interfaceprets extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-dashboard-48.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-dashboard-48.png"))); // NOI18N
         jLabel4.setText("Tableau de bord");
         jLabel4.setOpaque(true);
 
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(51, 51, 51));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-homepage-50.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-homepage-50.png"))); // NOI18N
         jButton1.setText("Accueil");
         jButton1.setBorder(null);
         jButton1.setFocusPainted(false);
@@ -233,7 +263,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-dashboard-100.png"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-dashboard-100.png"))); // NOI18N
         jLabel5.setText("DEMANDE DE PRETS");
         jLabel5.setOpaque(true);
 
@@ -266,7 +296,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton5.setBackground(new java.awt.Color(0, 153, 0));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-add-24.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-add-24.png"))); // NOI18N
         jButton5.setText("Soumettre");
         jButton5.setFocusPainted(false);
         jButton5.setFocusable(false);
@@ -279,7 +309,7 @@ public class interfaceprets extends javax.swing.JFrame {
         jButton8.setBackground(new java.awt.Color(255, 255, 255));
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(51, 51, 51));
-        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-update-24.png"))); // NOI18N
+        jButton8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-update-24.png"))); // NOI18N
         jButton8.setText("Cancel");
         jButton8.setFocusPainted(false);
         jButton8.setFocusable(false);
@@ -289,23 +319,23 @@ public class interfaceprets extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(51, 51, 51));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tablepret.setBackground(new java.awt.Color(255, 255, 255));
+        tablepret.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        tablepret.setForeground(new java.awt.Color(51, 51, 51));
+        tablepret.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "NOM", "NUMERO", "MONTANT", "DUREE", "OBJECTIF"
             }
         ));
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tablepret.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTable1MouseClicked(evt);
+                tablepretMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tablepret);
 
         nomclient.setBackground(new java.awt.Color(255, 255, 255));
         nomclient.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -354,50 +384,46 @@ public class interfaceprets extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 748, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGap(22, 22, 22)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(60, 60, 60)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(nomclient, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 0, Short.MAX_VALUE)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(duree, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(montantpret, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 347, Short.MAX_VALUE))
-                                        .addGroup(jPanel3Layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jScrollPane2)))))))
+                    .addComponent(jScrollPane1)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 821, Short.MAX_VALUE)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(60, 60, 60)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addComponent(nomclient, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(duree, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(jPanel3Layout.createSequentialGroup()
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(montantpret, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(192, 192, 192))
+                                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(6, 6, 6)
+                                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(jButton5)
                                 .addGap(36, 36, 36)
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -424,7 +450,7 @@ public class interfaceprets extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(37, 37, 37)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -481,23 +507,32 @@ public class interfaceprets extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_montantpretActionPerformed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
-    }//GEN-LAST:event_jTable1MouseClicked
+    private void tablepretMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablepretMouseClicked
+//    DefaultTableModel dt = (DefaultTableModel) tablepret.getModel();
+//        int index = tablepret.getSelectedRow();        
+//        txtid.setText(dt.getValueAt(index,0).toString());
+//        txtnom.setText(dt.getValueAt(index,1).toString());
+//        txtprenom.setText(dt.getValueAt(index,2).toString());
+//        txttel.setText(dt.getValueAt(index,3).toString());
+//        txtaddresse.setSelectedItem(dt.getValueAt(index,4).toString());  
+    }//GEN-LAST:event_tablepretMouseClicked
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
     String nom=nomclient.getText();
    String tel = numero.getText();
-        try {
-            int resultat=db.chargerinfosclient(nom, tel);
+        try {            
+            Client client =clientDB.chargerinfosclient(nom, tel);
             System.out.println(nom+tel);
-            if(resultat==1){
+            if(client != null ){
                 int montant=Integer.parseInt(montantpret.getText());
                 String temp= (String) duree.getSelectedItem();
-                int id_du_client = db.chercheridclient(nom,tel);
+                String objet = objectif.getText();
+                int id_du_client = clientDB.chercheridclient(nom,tel);
                 Pret nouveaupret =new Pret(id_du_client,temp,montant);
-                db.creerpret(nouveaupret);
+                pretdb.creerpret(nouveaupret);
                 viderchamps();
+                chargerpage();
+                 JOptionPane.showMessageDialog(this,"Enregistrement du pret reussie" );   
             }
             else{
               JOptionPane.showMessageDialog(this,"nom ou numero invalide ");
@@ -531,7 +566,7 @@ public class interfaceprets extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -550,6 +585,7 @@ public class interfaceprets extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel date_du_jour;
     private javax.swing.JComboBox<String> duree;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -566,7 +602,6 @@ public class interfaceprets extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -575,10 +610,10 @@ public class interfaceprets extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField montantpret;
     private javax.swing.JTextField nomclient;
     private javax.swing.JTextField numero;
     private javax.swing.JTextArea objectif;
+    private javax.swing.JTable tablepret;
     // End of variables declaration//GEN-END:variables
 }

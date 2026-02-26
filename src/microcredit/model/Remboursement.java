@@ -8,7 +8,7 @@ public class Remboursement {
     private LocalDate datePaiement;
     private Pret pret;
 
-    public Remboursement(double montant, LocalDate datePaiement, Pret pret) {
+    public Remboursement(double montant, Pret pret) {
 
         this.montant = montant;
         this.datePaiement = datePaiement;

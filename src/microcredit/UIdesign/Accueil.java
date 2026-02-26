@@ -5,7 +5,8 @@
 package microcredit.UIdesign;
 //import org.jfree.chart.ChartFactory;
 
-import microcredit.model.database;
+import microcredit.Database.ClientDB;
+
 
 
 
@@ -16,7 +17,8 @@ import java.sql.SQLException;
  * @author Agostinho MELANO
  */
 public class Accueil extends javax.swing.JFrame {
-    database db = new database();
+    ClientDB db = new ClientDB();
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Accueil.class.getName());
 
     /**
@@ -83,7 +85,7 @@ public class Accueil extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(102, 102, 102));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-account-50.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-account-50.png"))); // NOI18N
         jButton1.setText("Clients");
         jButton1.setBorder(null);
         jButton1.setFocusPainted(false);
@@ -99,7 +101,7 @@ public class Accueil extends javax.swing.JFrame {
         jButton2.setBackground(new java.awt.Color(255, 255, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(102, 102, 102));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-shopping-mall-50.png"))); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-shopping-mall-50.png"))); // NOI18N
         jButton2.setText("Préts");
         jButton2.setBorder(null);
         jButton2.setFocusPainted(false);
@@ -114,7 +116,7 @@ public class Accueil extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(255, 255, 255));
         jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(102, 102, 102));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-payment-50.png"))); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-payment-50.png"))); // NOI18N
         jButton3.setText("Paiements");
         jButton3.setBorder(null);
         jButton3.setFocusPainted(false);
@@ -129,7 +131,7 @@ public class Accueil extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(0, 153, 51));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(51, 51, 51));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-logout-50.png"))); // NOI18N
+        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-logout-50.png"))); // NOI18N
         jButton4.setText("Se Deconnecter");
         jButton4.setFocusPainted(false);
         jButton4.setFocusable(false);
@@ -143,7 +145,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-dashboard-48.png"))); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-dashboard-48.png"))); // NOI18N
         jLabel4.setText("Tableau de bord");
         jLabel4.setOpaque(true);
 
@@ -189,7 +191,7 @@ public class Accueil extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-user-account-50.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-user-account-50.png"))); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
@@ -231,7 +233,7 @@ public class Accueil extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-attention-50.png"))); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-attention-50.png"))); // NOI18N
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 0, 0));
@@ -245,7 +247,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(51, 51, 51));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-money-50.png"))); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-money-50.png"))); // NOI18N
         jLabel14.setText("54679 fc");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -284,7 +286,7 @@ public class Accueil extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-money-bag-50.png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-money-bag-50.png"))); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 153, 0));
@@ -298,7 +300,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(51, 51, 51));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-money-50.png"))); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-money-50.png"))); // NOI18N
         jLabel22.setText("17563009 fc");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -403,7 +405,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-merchant-account-50.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-merchant-account-50.png"))); // NOI18N
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255), 2));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -419,7 +421,7 @@ public class Accueil extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/icons8-account-50-2.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/microcredit/Assets/icons8-account-50-2.png"))); // NOI18N
         jLabel7.setText("Admin");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);

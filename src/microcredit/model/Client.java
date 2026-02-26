@@ -8,6 +8,7 @@ public class Client{
     private String prenom;
     private String telephone;
     private String adresse;
+    private int id;
 
 
     private CompteEpargne epargne;
@@ -53,7 +54,7 @@ public class Client{
 
     public Pret rembourserPret(double montant ){
         if (pret != null) {
-            this.pret.ajouterRemboursement(new Remboursement(montant, LocalDate.now(),this.pret));
+            this.pret.ajouterRemboursement(new Remboursement(montant,this.pret));
             System.out.println("remoursement effectuer avec succes");
             System.out.println(" il vous reste "+
                     this.pret.calculerMontantTotal() +" a rembourser ! ");
@@ -64,6 +65,11 @@ public class Client{
 
         return this.pret ;
     }
+
+    public void setEpargne(CompteEpargne epargne) {
+        this.epargne = epargne;
+    }
+
 
     public Pret getPret() {
         return pret;
@@ -107,5 +113,19 @@ public class Client{
         this.prenom = prenom;
     }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+    public void setPret(Pret pret) {
+        this.pret = pret;
+    }
+
+    @Override
+    public String toString() {
+        return "nom client : "+getNom() + "pret : "+ getPret();
+    }
 }

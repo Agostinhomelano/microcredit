@@ -13,6 +13,7 @@ public class Pret {
 
     private int idClient;
     private String objectif;
+    private int id;
 
     public Pret(Client client ,double montant) {
 
@@ -63,13 +64,13 @@ public class Pret {
 
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "le montant de votre pret est de "+ calculerMontantTotal();
+    }
 
     public double getTauxInteret() {
-        return tauxInteret;
+        return 30;
     }
 
     public void setTauxInteret(double tauxInteret) {
@@ -100,11 +101,15 @@ public class Pret {
         this.client = client;
     }
 
-    public double getid() {
+    public int getid() {
         return idClient;
     }
 
     public String getobjectif() {
         return objectif ;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
