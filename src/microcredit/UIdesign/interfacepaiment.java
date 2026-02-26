@@ -6,10 +6,12 @@ package microcredit.UIdesign;
 
 import microcredit.Database.ClientDB;
 import microcredit.Database.PretDB;
+import microcredit.Database.RemboursementDB;
 import microcredit.model.Client;
 import microcredit.model.Pret;
 import microcredit.model.Remboursement;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -22,13 +24,21 @@ import javax.swing.JOptionPane;
 public class interfacepaiment extends javax.swing.JFrame {
     ClientDB dbclient = new ClientDB();
     PretDB pretdb = new PretDB();
+    RemboursementDB remdb = new RemboursementDB();
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(interfacepaiment.class.getName());
 
     /**
      * Creates new form interfacepaiment
      */
-    public interfacepaiment() {
+    public interfacepaiment()  {
         initComponents();
+        try {
+            remdb.chargerRemboursements(tablepret);
+        } catch (SQLException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erreur lors du chargement !");
+        }
+
         LocalDate aujourdhui = LocalDate.now();
         DateTimeFormatter format=DateTimeFormatter.ofPattern("EEEE 'le' dd MMMM yyyy",Locale.FRENCH);
         String date_jour =aujourdhui.format(format);
@@ -296,7 +306,7 @@ public class interfacepaiment extends javax.swing.JFrame {
 
                 },
                 new String [] {
-                        "NOM", "NUMERO", "MONTANT", "DUREE", "OBJECTIF"
+                        "ID remboursement", "Nom client", "montant", "Date de paiement",
                 }
         ));
         tablepret.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -447,10 +457,17 @@ public class interfacepaiment extends javax.swing.JFrame {
                 double  montant=Double.parseDouble(montantpret.getText());
 
                 Remboursement remboursement = new Remboursement(montant , client.getPret());
-                client.getPret().ajouterRemboursement(remboursement);
 
-                System.out.println(client.getPret().calculerMontantTotal());
-                System.out.println(client.getPret().calculMontantRestant());
+
+                System.out.println(client.getPret().getId());
+                System.out.println(client.getId());
+
+                    client.getPret().ajouterRemboursement(remboursement);
+
+                remdb.ajouterRemboursementBD(remboursement , client.getPret());
+
+
+
 
 
                 viderchamps();

@@ -101,8 +101,10 @@ public class Pret {
         this.client = client;
     }
 
-    public int getid() {
-        return idClient;
+
+
+    public int getId() {
+        return id;
     }
 
     public String getobjectif() {

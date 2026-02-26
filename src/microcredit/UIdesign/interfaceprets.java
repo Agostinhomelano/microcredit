@@ -38,18 +38,6 @@ public class interfaceprets extends javax.swing.JFrame {
     }
      public void chargerpage(){
 
-
-
-
-
-
-
-
-
-
-
-
-
         try {
             pretdb.chargerpret(tablepret);
         } catch (SQLException ex) {
@@ -327,7 +315,7 @@ public class interfaceprets extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOM", "NUMERO", "MONTANT", "DUREE", "OBJECTIF"
+                "NOM", "NUMERO", "MONTANT", "DUREE", "STATUS"
             }
         ));
         tablepret.addMouseListener(new java.awt.event.MouseAdapter() {

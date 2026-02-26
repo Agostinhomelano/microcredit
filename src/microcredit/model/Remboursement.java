@@ -11,7 +11,7 @@ public class Remboursement {
     public Remboursement(double montant, Pret pret) {
 
         this.montant = montant;
-        this.datePaiement = datePaiement;
+        this.datePaiement = LocalDate.now();
         this.pret = pret;
     }
 

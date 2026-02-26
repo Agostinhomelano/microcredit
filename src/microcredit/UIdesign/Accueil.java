@@ -5,9 +5,9 @@
 package microcredit.UIdesign;
 //import org.jfree.chart.ChartFactory;
 
+import microcredit.Database.AcueilDB;
 import microcredit.Database.ClientDB;
-
-
+import microcredit.model.Client;
 
 
 import java.sql.SQLException;
@@ -18,6 +18,7 @@ import java.sql.SQLException;
  */
 public class Accueil extends javax.swing.JFrame {
     ClientDB db = new ClientDB();
+    AcueilDB acdb = new AcueilDB();
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Accueil.class.getName());
 
@@ -26,6 +27,7 @@ public class Accueil extends javax.swing.JFrame {
      */
     public Accueil() {
         initComponents();
+        acdb.chargerAcuiel(jTable1);
         this.setLocationRelativeTo(null);
         setTitle("Defa na kimia");
         try {
@@ -36,6 +38,7 @@ public class Accueil extends javax.swing.JFrame {
             System.getLogger(InterfaceClient.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }                       
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -345,7 +348,7 @@ public class Accueil extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "nom client ", "montant_pret", "montant a rembourser", "solde_epargne"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -364,7 +367,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(51, 51, 51));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("CLIENTS FIDELES");
+        jLabel23.setText("SITUATION DE LA BANQUE ");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

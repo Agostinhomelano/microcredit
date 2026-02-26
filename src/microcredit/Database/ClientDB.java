@@ -50,24 +50,18 @@ public class ClientDB {
 
         String query = "insert into clients(nom,prenom,telephone, adresse, num_compte)\n" +
                 "values(?,?,?,?,?)";
-        String query2 = "insert into epargne(solde,taux_interet,num_compte_clients) values(?,?,?)";
+
         Compte compte = new Compte(c);
         String num_compte = compte.getNumeroCompte();
         try (Connection co = connctionDB.getConnection();
-             PreparedStatement ps = co.prepareStatement(query);
-             PreparedStatement ps2 = co.prepareStatement(query2)) {
+             PreparedStatement ps = co.prepareStatement(query))
+            {
 
             ps.setString(1, c.getNom());
             ps.setString(2, c.getPrenom());
             ps.setString(3, c.getTelephone());
             ps.setString(4, c.getAdresse());
             ps.setString(5, num_compte);
-            ps2.setDouble(1, compte.getSolde());
-            ps2.setDouble(2, 10);
-            ps2.setString(3, num_compte);
-
-
-            ps2.executeUpdate();
             ps.executeUpdate();
             ps.close();
             co.close();
@@ -188,6 +182,7 @@ public class ClientDB {
 
         Client client = new Client(nom,prenom,tel,adresse);
         client.setId(idClient);
+     //   System.out.println("id client ;"+idClient);
         client.getEpargne().setNumeroCompte(num_compte);
 
 
@@ -206,7 +201,10 @@ public class ClientDB {
             double montant = rsPret.getDouble("montant");
 
             Pret pret = new Pret(client, montant);
-            pret.setId(idPret);   // ajoute setId dans Pret
+            client.setPret(pret);
+            client.getPret().setId(idPret);
+
+          //  System.out.println("id pret "+idPret);// ajoute setId dans Pret
 
 
 
@@ -223,7 +221,7 @@ public class ClientDB {
                 LocalDate dateR = rsRemb.getDate("dateRemboursement").toLocalDate();
 
 
-                Remboursement remboursement =  new Remboursement(montantR, pret);
+                Remboursement remboursement =  new Remboursement(montantR,pret);
 
                 pret.ajouterRemboursement(remboursement);
             }
