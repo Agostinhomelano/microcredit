@@ -431,6 +431,11 @@ public class interfacepaiment extends javax.swing.JFrame {
         ic.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Epargne epargne = new Epargne() ;
+        epargne.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Accueil accueil = new Accueil() ;

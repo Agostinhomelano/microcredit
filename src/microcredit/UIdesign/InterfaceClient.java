@@ -530,6 +530,11 @@ public class InterfaceClient extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Erreur d'insertion " + ex);
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Epargne epargne = new Epargne() ;
+        epargne.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         String id = txtid.getText().trim();

@@ -493,6 +493,11 @@ public class interfaceprets extends javax.swing.JFrame {
     private void montantpretActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_montantpretActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_montantpretActionPerformed
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Epargne epargne = new Epargne() ;
+        epargne.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
     private void tablepretMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablepretMouseClicked
 //    DefaultTableModel dt = (DefaultTableModel) tablepret.getModel();

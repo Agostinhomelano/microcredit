@@ -38,10 +38,18 @@ public class Accueil extends javax.swing.JFrame {
             String totalpret = tpret+"" ;
             jLabel21.setText(totalpret);
             txttotalclient.setText(total);
+            double montantpret = pretdb.totalpret();
+            String x = montantpret+"$";
+            jLabel22.setText(x);
         } catch (SQLException ex) {
             System.getLogger(InterfaceClient.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
         }                       
     }
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Epargne epargne = new Epargne() ;
+        epargne.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
 
 
     /**

@@ -6,9 +6,6 @@ package microcredit;
 
 import microcredit.UIdesign.Accueil;
 import microcredit.UIdesign.Login;
-import microcredit.model.Agent;
-
-import java.sql.Connection;
 
 /**
  *
@@ -21,10 +18,12 @@ public class Microcredit {
      */
     public static void main(String[] args) {
 
-        Accueil accueil = new Accueil() ;
-        accueil.setVisible(true);
-//        Login log = new Login();
-//        log.setVisible(true);
+
+        Login log = new Login() ;
+        log.setVisible(true);
+//
+
+
 
 
 

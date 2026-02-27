@@ -120,4 +120,24 @@ public class PretDB {
 
         return total;
     }
+
+    public int totalpret() {
+        int total = 0;
+        String sql = "SELECT sum(montant) AS total FROM pret where montant_restant >  0";
+
+        try (Connection co = connctionDB.getConnection();
+             PreparedStatement ps = co.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+
+        return total;
+    }
 }

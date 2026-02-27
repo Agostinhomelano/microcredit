@@ -23,7 +23,7 @@ public class AgentDB {
                 Agent agent = new Agent();
                 agent.setId(rs.getInt("id"));
                 agent.setNom(rs.getString("nom"));
-                agent.setTelephone(rs.getString("numero"));
+                agent.setTelephone(rs.getString("telephone"));
                 agent.setCode(rs.getString("code"));
                 return agent;
             } else {
