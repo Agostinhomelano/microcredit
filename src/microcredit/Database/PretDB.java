@@ -13,32 +13,28 @@ public class PretDB {
 
 
     public void creerpret(Pret p ) throws SQLException {
+        String query = "INSERT INTO pret(montant,duree,taux_interet,id_clients,date_demande) " +
+                "VALUES (?, ?, ?, ?, ?)";
 
-        String query ="insert into pret(montant,duree,taux_interet,id_clients,date_demande)\n" +
-                "values(?,?,?,?,?)";
         try (Connection co = connctionDB.getConnection();
-             PreparedStatement ps = co.prepareStatement(query)){
+             PreparedStatement ps = co.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setDouble(1, p.calculerMontantTotal());
             ps.setString(2, p.getDuree());
             ps.setDouble(3, p.getTauxInteret());
-            ps.setDouble(4, p.getId());
+            ps.setInt(4, p.getClient().getId());  //utiliser l'ID du client
             ps.setDate(5, Date.valueOf(LocalDate.now()));
-
 
             ps.executeUpdate();
 
+            // récupérer l'ID auto-increment du prêt
             ResultSet rs = ps.getGeneratedKeys();
-
             if (rs.next()) {
                 int generatedId = rs.getInt(1);
                 p.setId(generatedId);
-                System.out.println("ID généré : " + generatedId);
+                System.out.println("ID du prêt généré : " + generatedId);
             }
-
         }
-
-
     }
     public void actualiserPret(Pret pret ) throws SQLException {
 
@@ -60,8 +56,14 @@ public class PretDB {
 
     public void chargerpret(JTable matable) throws SQLException {
         Connection co = connctionDB.getConnection();
-        String sql = "SELECT c.nom, c.telephone, p.montant, p.duree,p.montant_restant " +
-                "FROM pret p LEFT JOIN clients c ON p.id_clients = c.id";
+
+        // 1Calcul du montant restant à partir des remboursements
+        String sql = "SELECT p.id, c.nom, c.telephone, p.montant, p.duree, " +
+                "IFNULL(p.montant - SUM(r.montant), p.montant) AS montant_restant " +
+                "FROM pret p " +
+                "LEFT JOIN clients c ON p.id_clients = c.id " +
+                "LEFT JOIN remboursement r ON r.id_pret = p.id " +
+                "GROUP BY p.id";
 
         PreparedStatement pst = co.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
@@ -69,24 +71,53 @@ public class PretDB {
         DefaultTableModel DF = (DefaultTableModel) matable.getModel();
         DF.setRowCount(0);  // vide les anciennes lignes
 
-        while(rs.next()){
-            double montant = rs.getDouble("montant");
-            double montant_restant = rs.getDouble("montant_restant"); // ou autre champ existant
 
+        String updateSql = "UPDATE pret SET montant_restant = ? WHERE id = ?";
+        PreparedStatement psUpdate = co.prepareStatement(updateSql);
+
+        while(rs.next()){
+            int idPret = rs.getInt("id");
+            double montant = rs.getDouble("montant");
+            double montant_restant = rs.getDouble("montant_restant");
+
+            //maj table pret
+            psUpdate.setDouble(1, montant_restant);
+            psUpdate.setInt(2, idPret);
+            psUpdate.executeUpdate();
+
+            // 3️⃣ Ajouter dans le JTable
             Vector v2 = new Vector();
             v2.add(rs.getString("nom"));
             v2.add(rs.getString("telephone"));
-            v2.add(rs.getDouble("montant"));
+            v2.add(montant);
             v2.add(rs.getString("duree"));
-
-            if (montant_restant >0) {
-                v2.add("en cours..");
-            } else {
-                v2.add("Remboursé");
-            }
-            System.out.println(montant_restant);
+            v2.add(montant_restant > 0 ? "En cours" : "Remboursé");
 
             DF.addRow(v2);
         }
+
+        psUpdate.close();
+        pst.close();
+        co.close();
+    }
+
+    public int countPret() {
+        int total = 0;
+        String sql = "SELECT COUNT(*) AS total FROM pret where montant_restant >  0";
+
+        try (Connection co = connctionDB.getConnection();
+             PreparedStatement ps = co.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            if (rs.next()) {
+                total = rs.getInt("total");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+
+        return total;
     }
 }

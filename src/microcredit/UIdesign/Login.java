@@ -4,18 +4,24 @@
  */
 package microcredit.UIdesign;
 
+import microcredit.Database.AgentDB;
+import microcredit.model.Agent;
+
+import javax.swing.*;
+import java.sql.SQLException;
+
 /**
  *
  * @author Agostinho MELANO
  */
-public class connection extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(connection.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Login.class.getName());
 
     /**
      * Creates new form connection
      */
-    public connection() {
+    public Login() {
         initComponents();
     }
 
@@ -38,6 +44,7 @@ public class connection extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton1 = new JButton("Connexion");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -94,11 +101,9 @@ public class connection extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 153, 0));
         jButton1.setText("SE CONNECTER");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
+
+
+
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -185,7 +190,41 @@ public class connection extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
+        System.out.println("aGZNGFzfqbnrgefr");
+        // 1️⃣ Récupérer les valeurs des champs
+        String nom =jTextField1.getText().trim();
+        String numero = jTextField2.getText().trim();
+        String code = jTextField3.getText().trim();
+
+        if(nom.isEmpty() || numero.isEmpty() || code.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Veuillez remplir tous les champs !");
+            return;
+        }
+
+        try {
+            // 2️⃣ Vérifier l'agent dans la base
+            AgentDB agentDB = new AgentDB();
+            Agent agent = agentDB.verifierConnexion(nom, numero, code);
+
+            if(agent != null){
+                // 3️⃣ Connexion réussie
+                JOptionPane.showMessageDialog(this, "Connexion réussie !");
+
+                // 4️⃣ Ouvrir la page d'accueil et fermer la fenêtre de connexion
+                Accueil accueil = new Accueil(); // passe l'objet agent si tu veux utiliser ses infos
+                accueil.setVisible(true);
+                this.dispose(); // ferme la fenêtre de connexion
+
+            } else {
+                // 5️⃣ Agent non trouvé
+                JOptionPane.showMessageDialog(this, "Nom, numéro ou code incorrect !");
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Erreur SQL : " + ex.getMessage());
+        }//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -196,7 +235,7 @@ public class connection extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -211,7 +250,7 @@ public class connection extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new connection().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new Login().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

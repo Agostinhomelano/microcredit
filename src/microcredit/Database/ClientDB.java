@@ -199,8 +199,9 @@ public class ClientDB {
 
             int idPret = rsPret.getInt("id");
             double montant = rsPret.getDouble("montant");
+            String duree  = rsPret.getString("duree");
 
-            Pret pret = new Pret(client, montant);
+            Pret pret = new Pret(client, montant,duree);
             client.setPret(pret);
             client.getPret().setId(idPret);
 
@@ -218,7 +219,7 @@ public class ClientDB {
             while (rsRemb.next()) {
 
                 double montantR = rsRemb.getDouble("montant");
-                LocalDate dateR = rsRemb.getDate("dateRemboursement").toLocalDate();
+                LocalDate dateR = rsRemb.getDate("date_paiement").toLocalDate();
 
 
                 Remboursement remboursement =  new Remboursement(montantR,pret);

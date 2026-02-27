@@ -28,10 +28,10 @@ public class Client{
     }
 
 
-    public Pret demanderPret(double montant) {
+    public Pret demanderPret(double montant,String duree) {
         if (pret == null) {
             if (montant < 1500) {
-                this.pret = new Pret(this, montant);
+                this.pret = new Pret(this, montant,duree);
 
                 System.out.println("demander reussi ");
 

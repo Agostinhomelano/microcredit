@@ -11,26 +11,22 @@ public class Pret {
     private double montantRestant ;
 
 
+
     private int idClient;
     private String objectif;
     private int id;
 
-    public Pret(Client client ,double montant) {
+    public Pret(Client client ,double montant,String duree) {
 
         this.montant = montant;
         this.tauxInteret = 30;
         this.remboursements = new ArrayList<>();
         this.client = client ;
+        this.duree = duree;
 
 
     }
 
-    public Pret(int idDuClient, String temp, int montant) {
-        this.idClient = idDuClient;
-        this.duree =temp;
-        this.montant =montant;
-
-    }
 
 
     public double calculerInteret() {
@@ -100,7 +96,13 @@ public class Pret {
     public void setClient(Client client) {
         this.client = client;
     }
+    public int getIdClient() {
+        return idClient;
+    }
 
+    public void setIdClient(int idClient) {
+        this.idClient = idClient;
+    }
 
 
     public int getId() {

@@ -8,7 +8,6 @@ import microcredit.Database.ClientDB;
 import microcredit.Database.PretDB;
 import microcredit.Database.RemboursementDB;
 import microcredit.model.Client;
-import microcredit.model.Pret;
 import microcredit.model.Remboursement;
 
 import java.sql.SQLException;
@@ -32,6 +31,12 @@ public class interfacepaiment extends javax.swing.JFrame {
      */
     public interfacepaiment()  {
         initComponents();
+        // ✅ Taille et position de la fenêtre
+        this.setSize(1090, 669);
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+        this.setVisible(true);
         try {
             remdb.chargerRemboursements(tablepret);
         } catch (SQLException e) {

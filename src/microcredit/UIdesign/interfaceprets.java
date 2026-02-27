@@ -8,7 +8,6 @@ import microcredit.Database.ClientDB;
 import microcredit.Database.PretDB;
 import microcredit.model.Client;
 import microcredit.model.Pret;
-import microcredit.model.Remboursement;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -505,29 +504,41 @@ public class interfaceprets extends javax.swing.JFrame {
 //        txtaddresse.setSelectedItem(dt.getValueAt(index,4).toString());  
     }//GEN-LAST:event_tablepretMouseClicked
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-    String nom=nomclient.getText();
-   String tel = numero.getText();
-        try {            
-            Client client =clientDB.chargerinfosclient(nom, tel);
-            System.out.println(nom+tel);
-            if(client != null ){
-                int montant=Integer.parseInt(montantpret.getText());
-                String temp= (String) duree.getSelectedItem();
-                String objet = objectif.getText();
-                int id_du_client = clientDB.chercheridclient(nom,tel);
-                Pret nouveaupret =new Pret(id_du_client,temp,montant);
-                pretdb.creerpret(nouveaupret);
-                viderchamps();
-                chargerpage();
-                 JOptionPane.showMessageDialog(this,"Enregistrement du pret reussie" );   
-            }
-            else{
-              JOptionPane.showMessageDialog(this,"nom ou numero invalide ");
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {
+        String nom = nomclient.getText();
+        String tel = numero.getText();
 
+        try {
+            Client client = clientDB.chargerinfosclient(nom, tel);
+
+            if (client != null) {
+                // Récupérer et définir l'ID dans l'objet client
+                int idClient = clientDB.chercheridclient(nom, tel);
+                client.setId(idClient);
+
+                if(client.getPret() == null) {
+                    int montant = Integer.parseInt(montantpret.getText());
+                    String temp = (String) duree.getSelectedItem();
+
+                    Pret pret = client.demanderPret(montant,temp);
+                    // pas besoin de setIdClient si creerPret utilise client.getId()
+                    pretdb.creerpret(pret);
+
+                    viderchamps();
+                    chargerpage();
+                    JOptionPane.showMessageDialog(this,"Enregistrement du prêt réussi !");
+                } else {
+                    JOptionPane.showMessageDialog(this,"Le client a déjà un prêt en cours !");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this,"Nom ou numéro invalide !");
             }
+
         } catch (SQLException ex) {
-            System.getLogger(interfaceprets.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(this,"Erreur SQL : " + ex.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this,"Montant invalide !");
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 

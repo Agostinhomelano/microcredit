@@ -7,7 +7,7 @@ package microcredit.UIdesign;
 
 import microcredit.Database.AcueilDB;
 import microcredit.Database.ClientDB;
-import microcredit.model.Client;
+import microcredit.Database.PretDB;
 
 
 import java.sql.SQLException;
@@ -19,6 +19,7 @@ import java.sql.SQLException;
 public class Accueil extends javax.swing.JFrame {
     ClientDB db = new ClientDB();
     AcueilDB acdb = new AcueilDB();
+    PretDB pretdb = new PretDB();
 
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Accueil.class.getName());
 
@@ -33,6 +34,9 @@ public class Accueil extends javax.swing.JFrame {
         try {
             int inttotal =db.totalclients();
             String total=inttotal+"";
+            int tpret = pretdb.countPret();
+            String totalpret = tpret+"" ;
+            jLabel21.setText(totalpret);
             txttotalclient.setText(total);
         } catch (SQLException ex) {
             System.getLogger(InterfaceClient.class.getName()).log(System.Logger.Level.ERROR, (String) null, ex);
@@ -298,6 +302,7 @@ public class Accueil extends javax.swing.JFrame {
         jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 153, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         jLabel21.setText("65");
 
         jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
